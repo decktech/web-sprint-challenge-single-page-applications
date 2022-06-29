@@ -16,22 +16,27 @@ export default function Form(props) {
     return (
         <div>
             <h1>Pizza Form</h1>
-            <form onSubmit={onSubmit}>
+            <p>{props.errors.name}</p>
+            <p>{props.errors.size}</p>
+            <form id="pizza-form"className="pizza-form" onSubmit={onSubmit}>
                 <div className='errors'>
                     <div>{'errors'.name}</div>
                 </div>
                 <label> Name:
                     <input
+                        id="name-input"
                         name="name"
                         type="text"
-                        // value={props.values.name}
+                        value={props.values.name}
+                        onChange={onChange}
                     />
                 </label>
                 <label> Size:
                     <select
-                        // onChange={onChange}
-                        // value={props.values.size}
+                        id="size-dropdown"
                         name="size"
+                        onChange={onChange}
+                        value={props.values.size}
                     >
                         <option value="">--Select Size--</option>
                         <option value="12">12"</option>
@@ -43,45 +48,47 @@ export default function Form(props) {
                     <h2>Toppings</h2>
                     <label> Extra Cheese
                         <input 
-                            name="extra-cheese"
+                            name="extraCheese"
                             type="checkbox"
-                            // checked={values.extraCheese}
-                            // onChange={onChange}
+                            checked={props.values.extraCheese}
+                            onChange={onChange}
                         />
                     </label>
                     <label> Pepperoni
                         <input 
                             name="pepperoni"
                             type="checkbox"
-                            // checked={values.pepperoni}
-                            // onChange={onChange}
+                            checked={props.values.pepperoni}
+                            onChange={onChange}
                         />
                     </label>
                     <label> Onions
                         <input 
                             name="onions"
                             type="checkbox"
-                            // checked={values.onions}
-                            // onChange={onChange}
+                            checked={props.values.onions}
+                            onChange={onChange}
                         />
                     </label>
                     <label> Mushrooms
                         <input 
                             name="mushrooms"
                             type="checkbox"
-                            // checked={values.mushrooms}
-                            // onChange={onChange}
+                            checked={props.values.mushrooms}
+                            onChange={onChange}
                         />
                     </label>
                 </div>
-                <label>
-                    <input
-                        name="special-request"
+                <label> Special Requests:
+                    <input 
+                        id="special-text"
+                        name="special"
                         type="text"
-                        //value={}
+                        value={props.values.special}
+                        onChange={onChange}
                     />
                 </label>
-                <button id="order-button" disabled={props.disabled}>Add to Order</button>
+                <input name="add" value="add to order"type="submit"id="order-button" disabled={props.disabled} />
             </form>
         </div>
        

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Form from "./Components/pizza-form";
+import Home from "./Components/home";
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 import axios from "axios";
+import { Link, Route, Switch } from "react-router-dom";
 
 
 
@@ -42,6 +44,7 @@ const App = () => {
     axios.post(`https://reqres.in/api/orders`, formValues)
       .then(res => {
         console.log(res)
+
       })
       .catch(err => console.error(err))
   }
@@ -52,13 +55,28 @@ const App = () => {
 
   return (
     <>
+      
+      <nav>
+      <Link to="/">Home</Link>
+      <Link to="/pizza">Order Pizza</Link>
+      </nav>
       <h1>Lambda Eats</h1>
-      <Form
-        values={formValues}
-        change={inputChange}
-        submit={formSubmit}
-        disabled={disabled}
-        errors={formErrors}/>
+      <div>
+      
+      <Route exact path="/">
+        <Home/>
+      </Route>
+      <Route path="/pizza">
+        <Form
+          values={formValues}
+          change={inputChange}
+          submit={formSubmit}
+          disabled={disabled}
+          errors={formErrors}
+        />
+      </Route>
+      
+      </div>
     </>
   );
 };
